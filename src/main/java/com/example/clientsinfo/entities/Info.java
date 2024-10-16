@@ -1,19 +1,38 @@
 package com.example.clientsinfo.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @Entity
+@Table(name = "informations")
+@NoArgsConstructor
 public class Info {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Getter
+    private long id;
 
-    @Column(length = 24, nullable = false, unique = true)
-    private String phone;
+    @Getter
+    @Setter
+    @Column(nullable = false, unique = true)
+    private String contact;
 
-    @Column(length = 24, nullable = false, unique = true)
-    private String email;
+    @Getter
+    private String type;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "client_id", nullable = false)
+    private Client client;
+
+//    private String defineType(String contact) {
+//
+//    }
+
+    public Info(String contact, String type, Client client) {
+        this.contact = contact;
+        this.type = type;
+        this.client = client;
+    }
 }
