@@ -16,7 +16,7 @@ public class Info {
 
     @Getter
     @Setter
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String contact;
 
     @Getter
@@ -25,10 +25,6 @@ public class Info {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
-
-//    private String defineType(String contact) {
-//
-//    }
 
     public Info(String contact, String type, Client client) {
         this.contact = contact;

@@ -19,7 +19,7 @@ public class Client {
 
     @Getter
     @Setter
-    @Column(length = 24, nullable = false, unique = true)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
